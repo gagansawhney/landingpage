@@ -1229,7 +1229,6 @@ textarea.form-control {
 }
 .push-down {
     top: 5rem;
-    position: relative;
     z-index: 1;
 }
 .push-up {
@@ -1491,7 +1490,7 @@ textarea.form-control {
     font-weight: 400;
     line-height: 1.22em;
 }
-#hero .hero__caption .raleway-styled-text {
+#hero .hero__caption h3.raleway-styled-text {
     font-size: 1.3rem;
     letter-spacing: .6em;
     font-family: 'Raleway', sans-serif;
@@ -1504,6 +1503,17 @@ textarea.form-control {
 #hero .hero__caption p {
     font-family: 'Raleway', sans-serif;
     font-size: 1.3rem;
+}
+
+#text-image-block .text-image__text p.raleway-styled-text {
+    font-size: 1.3rem;
+    letter-spacing: .6em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    margin: 13px 0 0;
+    text-transform: uppercase;
+    line-height: 2.2em;
+    color: #000;
 }
 #hero .hero__caption h3 {
     font-size: 13px;
@@ -1548,10 +1558,10 @@ font-size: 13px;
 }
 
 .scroll_2_about {
-    font-family: "Cormorant Garamond";
+    font-family: "Cormorant Garamond", serif;
     text-transform: uppercase;
     color: #000;
-    font-size: 44px;
+    font-size: 3.4rem;
     font-weight: 400;
     line-height: 1.22em;
     text-align: left;
@@ -1751,72 +1761,30 @@ font-size: 13px;
 .block .block__wrapper {
     padding-top: 0rem;
 }
-/* Text-image block: allow text to flow full-width below image */
-#text-image-block .row {
-    display: block;
-}
-#text-image-block .col-md-5 {
-    float: right;
-    width: 45%;
-}
-#text-image-block .col-md-6 {
-    float: none;
-    width: auto;
-    overflow: hidden;
-}
-@media (max-width: 991.98px) {
-    #text-image-block .col-md-5,
-    #text-image-block .col-md-6 {
-        float: none;
-        width: 100%;
-    }
-}
 
-/* Text-image block layout using flex */
-#text-image-block .text-image.flex-row {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
+.text-image:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Text-image block layout */
+#text-image-block .text-image__media {
+    float: right;
+    width: 45%; /* Adjust as needed */
+    margin-left: 3rem; /* Spacing between image and text */
 }
 #text-image-block .text-image__text {
-    flex: 1 1 50%;
+    overflow: hidden; /* This creates a new block formatting context, effectively clearing floats within */
 }
-#text-image-block .text-image__media {
-    flex: 0 1 45%;
-}
-#text-image-block .text-image__media img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
+
 @media (max-width: 991.98px) {
-    #text-image-block .text-image.flex-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    #text-image-block .text-image__text,
     #text-image-block .text-image__media {
-        flex: 1 1 100%;
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 2rem; /* Add some space below image on small screens */
+    }
+    #text-image-block .text-image__text {
         width: 100%;
     }
 }
-
-/* Strong overrides for text-image layout */
-#text-image-block .text-image.flex-row { display: flex !important; }
-#text-image-block .text-image__text { flex: 1 1 50% !important; }
-#text-image-block .text-image__media { flex: 0 1 45% !important; }
-#text-image-block .text-image__media img { width: 100% !important; height: auto !important; display: block !important; }
-@media (max-width: 991.98px) {
-    #text-image-block .text-image.flex-row { flex-direction: column !important; align-items: flex-start !important; }
-    #text-image-block .text-image__text,
-    #text-image-block .text-image__media { flex: 1 1 100% !important; width: 100% !important; }
-}
-
-/* Reassert removal of old floats */
-#text-image-block .row,
-#text-image-block .col-md-5,
-#text-image-block .col-md-6 { float: none !important; width: auto !important; display: initial !important; }
-
-/* Float-based layout for text-image block to allow text wrap under image */
-#text-image-block .text-image { display: block !important; }
-
