@@ -450,16 +450,22 @@ $('#modal-feature').off('show.bs.modal').on('show.bs.modal', function (ev) {
 
 		// Rebuild carousel
 		var $c = $modal.find('.modal__carousel');
-		try { $c.trigger('destroy.owl.carousel'); } catch(e) {}
+		try {
+			// Properly destroy if already initialized
+			$c.trigger('destroy.owl.carousel');
+		} catch(e) {}
+		// Clean up DOM and data
+		$c.off('.owl.carousel');
 		$c.removeClass('owl-loaded owl-hidden');
 		$c.find('.owl-stage-outer').children().unwrap();
+		$c.removeData('owl.carousel');
 		$c.removeData('owlCarousel');
 		$c.removeData('owl-initialized');
 		$c.empty();
 		slides.forEach(function(it){
 			var slide = [
 				'<div class="slide">',
-				'  <img loading="lazy" src="'+it.normal+'"',
+				'  <img src="'+it.normal+'"',
 				'       srcset="'+it.small+' 600w, '+it.normal+' 1200w"',
 				'       sizes="(max-width: 767px) 100vw, 1200px" alt="">',
 				'</div>'
@@ -467,7 +473,12 @@ $('#modal-feature').off('show.bs.modal').on('show.bs.modal', function (ev) {
 			$c.append(slide);
 		});
 		$c.owlCarousel({ items:1, nav:0, dots:1, loop:1, autoplay:1, autoplaySpeed:2000, autoHeight:true });
-		$c.data('owl-initialized', true);
+		// Ensure height recalculates after images load
+		$c.find('img').one('load', function(){
+			try { $c.trigger('refresh.owl.carousel'); } catch(e) {}
+		}).each(function(){
+			if (this.complete) $(this).trigger('load');
+		});
 	}
 
 	// Bind internal switching and contact button actions (once per modal instance)

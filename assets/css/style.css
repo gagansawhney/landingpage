@@ -248,7 +248,7 @@ Headers:		'Poppins', sans-serif;
 .box.box--image .box__wrapper {
     background-color: #fff;
     border-radius: .3rem;
-    box-shadow: 0 .1rem 2rem rgba(0,0,0,.15);
+    /* box-shadow: 0 .1rem 2rem rgba(0,0,0,.15); */
     overflow: hidden;
     position: relative;
 }
@@ -365,7 +365,6 @@ Headers:		'Poppins', sans-serif;
 .dropdown-menu {
     border: none;
     font-size: 1.4rem;
-    box-shadow: 0 .1rem 2rem rgba(0,0,0,.15);
     padding: 0;
 }
 .dropdown-menu.show {
@@ -764,7 +763,7 @@ ul, ol {
     outline: none !important;
     cursor: pointer;
     overflow: hidden;
-    box-shadow: 0 .15rem .15rem rgba(0,0,0,.2);
+    
 }
 .btn:hover, .btn:focus, .btn:active {
     outline: none !important;
@@ -775,7 +774,7 @@ ul, ol {
 }
 .btn.btn-primary:hover, .btn.btn-primary:focus, .btn.btn-primary:active {
     color: #fff;
-    box-shadow: 0 .1rem 1rem rgba(0,0,0,.2);
+    
 }
 .btn.btn-rounded {
     border-radius: 3rem;
@@ -1271,7 +1270,7 @@ textarea.form-control {
     z-index: 1;
 }
 .shadow {
-    box-shadow: 0 .1rem 2rem rgba(0,0,0,.15);
+    
 }
 .text-align-right {
     text-align: right;
@@ -1513,7 +1512,7 @@ textarea.form-control {
     margin: 13px 0 0;
     text-transform: uppercase;
     line-height: 2.2em;
-    color: #000;
+    color: #c28562;
 }
 #hero .hero__caption h3 {
     font-size: 13px;
@@ -1661,6 +1660,16 @@ font-size: 13px;
     font-size: 1.6rem;
 }
 
+/* Remove borders and drop shadows from the amenities accordion */
+#amenities-accordion .card,
+#amenities-accordion .card-header,
+#amenities-accordion .card-body,
+#amenities-accordion .collapse {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent;
+}
+
 /* Owl Carousel Navigation Arrows */
 /*
 .owl-carousel .owl-nav {
@@ -1774,7 +1783,7 @@ font-size: 13px;
     margin-left: 3rem; /* Spacing between image and text */
 }
 #text-image-block .text-image__text {
-    overflow: hidden; /* This creates a new block formatting context, effectively clearing floats within */
+    overflow: visible; /* Allow text to wrap around the floated image and take full width below it */
 }
 
 @media (max-width: 991.98px) {
@@ -1787,4 +1796,79 @@ font-size: 13px;
     #text-image-block .text-image__text {
         width: 100%;
     }
+}
+
+/* Modal layout fixes for villa galleries */
+#modal-feature .modal-dialog {
+    max-width: 1080px;
+    width: calc(100% - 2rem);
+    margin: 1.5rem auto;
+}
+#modal-feature .modal-content {
+    border: none;
+    box-shadow: none;
+    overflow: hidden;
+}
+#modal-feature .modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    border: none;
+}
+#modal-feature .modal-header .close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 2;
+}
+#modal-feature .modal__title {
+    padding: 1.5rem 2rem;
+}
+#modal-feature .modal__carousel {
+    width: 100%;
+}
+#modal-feature .modal__carousel .owl-stage-outer {
+    overflow: hidden;
+}
+#modal-feature .modal__carousel .slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+#modal-feature .modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
+#modal-feature .modal-body .float-left,
+#modal-feature .modal-body .float-right {
+    float: none !important;
+}
+#modal-feature .modal-body .width-60 {
+    width: 60%;
+    box-sizing: border-box;
+}
+#modal-feature .modal-body .width-40 {
+    width: 40%;
+    box-sizing: border-box;
+}
+@media (max-width: 991.98px) {
+    #modal-feature .modal-body {
+        flex-direction: column;
+    }
+    #modal-feature .modal-body .width-60,
+    #modal-feature .modal-body .width-40 {
+        width: 100%;
+    }
+}
+
+#modal-feature .modal-cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 2rem;
+}
+#modal-feature .modal-cta .btn-contact {
+    margin: .5rem 1rem;
 }
