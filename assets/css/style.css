@@ -51,7 +51,7 @@ Headers:		'Poppins', sans-serif;
     overflow: hidden;
 }
 .block .block__title {
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
 }
 .block .block__title h2 {
     margin-bottom: 2rem;
@@ -62,8 +62,8 @@ Headers:		'Poppins', sans-serif;
 }
 .block .block__wrapper {
     position: relative;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    /* padding-top: 5rem;
+    padding-bottom: 5rem; */
 }
 .block .block__wrapper > h3 {
     margin-bottom: 6rem;
@@ -409,7 +409,7 @@ Headers:		'Poppins', sans-serif;
 .navbar {
     background-color: #fff;
     box-shadow: 0 .1rem 2rem rgba(0,0,0,.15);
-    padding: 3rem;
+    padding: 1rem 3rem;
     font-size: 1.4rem;
 }
 .navbar .nav-info {
@@ -790,11 +790,11 @@ ul, ol {
     position: relative;
 }
 .btn.btn-framed.btn-primary {
-    border-color: #95c425;
+    border-color: #c28562;
 }
 .btn.btn-framed.btn-primary:hover, .btn.btn-framed.btn-primary:focus, .btn.btn-framed.btn-primary:active {
-    background-color: #95c425;
-    border-color: #95c425;
+    background-color: #c28562;
+    border-color: #c28562;
     box-shadow: none;
     color: #fff;
 }
@@ -1432,7 +1432,7 @@ textarea.form-control {
     height: auto !important;
 }
 #hero .hero__background {
-    height: 50rem;
+    height: 25rem;
     border-bottom: none;
     position: relative;
     z-index: 1;
@@ -1465,6 +1465,44 @@ textarea.form-control {
     .push-up {
         top: 0;
     }
+    /* Mobile header logo size */
+    .navbar .navbar-brand img { width: 100px !important; height: auto; }
+    /* Smaller Enquire Now button in header on mobile */
+    .navbar .btn-contact { font-size: 1.1rem; padding: .7rem 1rem; }
+    /* Tighten hero top spacing on mobile */
+    #hero .hero__inner-wrapper.align-bottom { padding-top: 0; }
+    /* Hide carousel arrows and slider-nav on mobile */
+    #hero .hero__slider .owl-nav { display: none !important; }
+    #hero .slider-nav { display: none !important; }
+    /* Remove gap between slider and form */
+    #hero .hero__background { margin-bottom: 0; }
+    #hero .hero__caption { margin-top: 0 !important; }
+    /* Compact hero form */
+    #hero .hero__caption { padding: 1rem 1rem; }
+    #hero .hero__caption .form label { font-size: 1.1rem; margin-bottom: .3rem; }
+    #hero .hero__caption .form .form-control { font-size: 1.2rem; height: 2.8rem; padding: .4rem .8rem; }
+    #hero .hero__caption .form textarea.form-control { height: 2.8rem; min-height: 2.8rem; }
+    #hero .hero__caption .form .btn { font-size: 1.2rem; padding: .5rem .8rem; }
+    #hero .hero__caption .form .form-group { margin-bottom: .6rem; }
+    #hero .hero__caption .hero-nudge { font-size: 1.2rem; }
+    #form-hero-cc, #form-contact-cc { max-width: 45px !important; }
+
+    /* Global mobile typography reductions */
+    body { font-size: 1.3rem; line-height: 2.2rem; }
+    /* Two-column inputs on mobile for hero form */
+    #hero .form-row { display: flex; flex-wrap: wrap; margin-left: -5px; margin-right: -5px; }
+    #hero .form-row .form-group.col-md-6 { width: 50%; padding-left: 5px; padding-right: 5px; }
+    #hero .form-row.align-items-stretch .form-group { width: 50%; }
+    #hero .form .form-group button#form-hero-submit { width: 100%; }
+    h1 { font-size: 2.6rem; margin-bottom: 1.2rem; }
+    h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.6rem; margin-bottom: .8rem; }
+    h4 { font-size: 1.4rem; margin-bottom: .6rem; }
+    p { font-size: 1.3rem; }
+    .btn { font-size: 1.3rem; }
+    .raleway-styled-text { font-size: 1.1rem; letter-spacing: .45em; }
+    #hero .hero__caption h1 { font-size: 2.2rem; }
+    #hero .hero__caption h3 { font-size: 1.0rem;}
 }
 /* Navbar brand logo sizing */
 .navbar .navbar-brand img {
@@ -1478,7 +1516,7 @@ textarea.form-control {
     }
 }
 #hero .hero__caption {
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0,0,0,0.85);
     padding: 2.5rem 2rem;
 }
 #hero .hero__caption h1 {
@@ -1489,7 +1527,24 @@ textarea.form-control {
     font-weight: 400;
     line-height: 1.22em;
 }
-#hero .hero__caption h3.raleway-styled-text {
+
+@media (max-width: 767px) {
+    #hero .hero__caption h1 {
+    font-size: 2.4rem;
+}
+#hero .hero__caption h3 {
+    font-size: 14px !important;
+}
+
+#hero .hero__caption p {
+    font-size: 12px !important;
+}
+
+#hero .hero__caption .form .form-control {
+    font-size: 1.0rem !important;
+}
+}
+/* #hero .hero__caption h3.raleway-styled-text {
     font-size: 1.3rem;
     letter-spacing: .6em;
     font-family: 'Raleway', sans-serif;
@@ -1498,13 +1553,89 @@ textarea.form-control {
     text-transform: uppercase;
     line-height: 2.2em;
     color: #c28562;
+} */
+
+.raleway-styled-text {
+    font-size: 2rem;
+    letter-spacing: normal;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    margin: 13px 0 0;
+    text-transform: none;
+    /* line-height: 2.2em; */
+    color: black;
+    text-align: left;
+}
+
+@media(max-width: 767px) {
+    .raleway-styled-text {
+        font-size: 14px;
+    }
 }
 #hero .hero__caption p {
     font-family: 'Raleway', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
+}
+#hero .hero__caption .hero-nudge {
+    margin-top: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: #ffd7b3;
+    letter-spacing: .08em;
 }
 
-#text-image-block .text-image__text p.raleway-styled-text {
+/* Contact section tweaks */
+#contact .block__title p.raleway-styled-text {
+    max-width: 50%;
+}
+@media (max-width: 991.98px) {
+    #contact .block__title p.raleway-styled-text {
+        max-width: 100%;
+    }
+}
+
+#contact .contact-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+#contact .person,
+#contact .person__image,
+#contact .person__description { display: none; }
+
+/* Footer logo */
+#footer .footer-logo {
+    padding-bottom: 1rem;
+}
+#footer .footer-logo img {
+    max-width: 140px;
+    height: auto;
+}
+
+/* Contact form side-by-side phone/message with bottom-aligned submit */
+#contact .contact-form-wrapper .row .col-md-6 { display: flex; flex-direction: column; }
+#contact .contact-form-wrapper .contact-submit { width: 100%; margin-top: .5rem; display: block; }
+#contact .contact-form-wrapper textarea.form-control { max-height: 240px; }
+@media (max-width: 767.98px) {
+    #contact .contact-form-wrapper .contact-submit {
+        width: 100%;
+    }
+}
+
+/* Right-side big logo centered */
+#contact .contact-side-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+#contact .contact-side-logo img {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+}
+
+/* #text-image-block .text-image__text p.raleway-styled-text {
     font-size: 1.3rem;
     letter-spacing: .6em;
     font-family: 'Raleway', sans-serif;
@@ -1513,14 +1644,14 @@ textarea.form-control {
     text-transform: uppercase;
     line-height: 2.2em;
     color: #c28562;
-}
+} */
 #hero .hero__caption h3 {
     font-size: 13px;
 }
 
 .acc_btn {
-font-family: raleway;
-font-size: 13px;
+    font-family: 'Cormorant Garamond';
+    font-size: 24px !important;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -1549,7 +1680,7 @@ font-size: 13px;
     pointer-events: none;
 }
 #hero .hero__caption p {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-bottom: 1.2rem;
 }
 #hero .hero__caption .form .form-group {
@@ -1565,9 +1696,22 @@ font-size: 13px;
     line-height: 1.22em;
     text-align: left;
 }
+
+@media(max-width: 767px) {
+    .scroll_2_about {
+        font-size: 2.4rem;
+    }
+}
+
 #hero .hero__caption .form label {
     font-size: 1.3rem;
     margin-bottom: .5rem;
+}
+
+@media(max-width: 767px) {
+    #hero .hero__caption .form label {
+        font-size: 1.1rem;        
+    }
 }
 #hero .hero__caption .form .form-control {
     font-size: 1.4rem;
@@ -1575,8 +1719,8 @@ font-size: 13px;
     padding: .6rem 1rem;
 }
 #hero .hero__caption .form textarea.form-control {
-    height: auto;
-    min-height: 6rem;
+    height: 3.5rem;
+    /* min-height: 6rem; */
     padding: .6rem 1rem;
 }
 #hero .hero__caption .form .btn {
@@ -1728,7 +1872,7 @@ font-size: 13px;
 #hero .hero__outer-wrapper .hero__inner-wrapper {
     display: block;
     vertical-align: top;
-    padding-top: 6vh;
+    padding-top: unset;
 }
 #hero .hero__inner-wrapper {
     padding-top: 0;
@@ -1762,9 +1906,19 @@ font-size: 13px;
     border-color: rgba(0,0,0,0.85);
     color: #fff;
 }
+
+/* Floating Contact button */
+.floating-contact {
+    position: fixed;
+    right: 1.6rem;
+    bottom: 1.6rem;
+    z-index: 1030;
+    display: none;
+}
+.floating-contact.is-visible { display: inline-block; }
 #hero .hero__inner-wrapper.align-bottom {
     vertical-align: top;
-    padding-top: 6vh;
+    padding-top: unset;
 }
 /* Section spacing adjustments */
 .block .block__wrapper {
@@ -1871,4 +2025,14 @@ font-size: 13px;
 }
 #modal-feature .modal-cta .btn-contact {
     margin: .5rem 1rem;
+}
+
+#content {
+    margin-top: 4em;
+}
+
+@media(max-width: 767px) {
+    #content {
+        margin-top: 0px;
+    }
 }

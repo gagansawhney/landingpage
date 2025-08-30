@@ -31,7 +31,7 @@
                     <img src="assets/img/logo.webp" alt="">
                 </a>
                 <div class="ml-auto">
-                    <a href="#contact" class="btn btn-contact">Contact Us</a>
+                    <a href="#contact" class="btn btn-contact">Enquire Now</a>
                 </div>
             </nav>
 
@@ -58,34 +58,40 @@
                 <div class="row">
                     <div class="hero__outer-wrapper">
                         <div class="hero__inner-wrapper align-bottom">
-                            <div class="col-xl-6 col-lg-6 col-md-8">
+                            <div class="col-xl-8 col-lg-6 col-md-8">
                                 <div class="hero__caption has-dark-background">
                                     <h1>Your Goan Sanctuary: Coco Verde, Nerul</h1>
-                                    <h3 class="raleway-styled-text">4-Bedroom Homes with Private Pools, Nestled Near Coco Beach & Lush Greenery</h3>
+                                    <h3 style="color: white; line-height: 1.5; margin-bottom: 1em;" class="raleway-styled-text">4-Bedroom Homes with Private Pools, Nestled Near Coco Beach & Lush Greenery</h3>
                                     <p>Please submit your details for brochures, price lists, site visits and more.</p>
-                                    <form class="form">
+                                    <form id="form-hero" class="form" method="post" data-formspree="https://formspree.io/f/xnnbpwyk">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="form-hero-name">Name</label>
-                                                <input id="form-hero-name" type="text" class="form-control" placeholder="Your Name" aria-label="Your Name" required>
+                                                <input id="form-hero-name" name="name" type="text" class="form-control" placeholder="Your Name" aria-label="Your Name" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="form-hero-phone">Phone</label>
-                                                <input id="form-hero-phone" type="tel" class="form-control" placeholder="Your Phone" aria-label="Your Phone" required>
+                                                <div class="d-flex">
+                                                    <input id="form-hero-cc" name="country_code" type="text" class="form-control mr-2" value="+91" aria-label="Country Code" style="max-width: 90px;">
+                                                    <input id="form-hero-phone" name="phone" type="tel" class="form-control flex-grow-1" placeholder="Your Phone" aria-label="Your Phone" required>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-row align-items-stretch">
                                             <div class="form-group col-md-6 d-flex flex-column">
                                                 <label for="form-hero-email">Email</label>
-                                                <input id="form-hero-email" type="email" class="form-control" placeholder="Your Email" aria-label="Your Email" required>
-                                                <button class="btn btn-secondary mt-2" type="submit">Submit</button>
+                                                <input id="form-hero-email" name="email" type="email" class="form-control" placeholder="Your Email" aria-label="Your Email" required>
                                             </div>
                                             <div class="form-group col-md-6 d-flex flex-column">
                                                 <label for="form-hero-message">Message</label>
-                                                <textarea id="form-hero-message" class="form-control flex-grow-1" placeholder="Your Message" aria-label="Your Message"></textarea>
+                                                <textarea id="form-hero-message" name="message" class="form-control flex-grow-1" placeholder="Your Message" aria-label="Your Message"></textarea>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-secondary mt-2 w-100" type="submit" id="form-hero-submit">Submit</button>
+                                        </div>
                                     </form>
+                                    <p class="hero-nudge">Only 4 villas available. 500 meters from Coco Beach.</p>
                                 </div>
                                 <div class="slider-nav"></div>
                             </div>
@@ -235,17 +241,17 @@
 
                 <!--TEXT with BACKGROUND BLOCK***************************************************************************-->
 
-                <section class="block" id="developing-process" style="margin-top: 6em;">
+                <section class="block" id="developing-process" style="padding-bottom: 0em;">
                     <div class="container">
                         <div class="block__wrapper">
 
                             <div class="row align-items-stretch">
                                 <div class="col-md-5">
-                                    <img src="assets/img/image-05.png" class="width-100 shadow rounded-corners h-100" style="object-fit: cover;" alt="">
+                                    <a href="https://www.google.com/maps/place/15%C2%B030'19.2%22N+73%C2%B047'27.6%22E/@15.5053362,73.7884273,17z/data=!3m1!4b1!4m7!1m2!10m1!1e2!3m3!8m2!3d15.505331!4d73.7910022?entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="cursor: pointer;"><img src="assets/img/nerul_map.png" class="width-100 shadow rounded-corners h-100" style="object-fit: cover; filter: grayscale(25%);" alt=""></a>
                                 </div>
                                 <div class="col-md-7 d-flex flex-column">
                                     <div class="block__title text-center">
-                                        <h2>Distance from Amenities / Landmarks</h2>
+                                        <h2 class="scroll_2_about">Distance from Amenities / Landmarks</h2>
 							            <p class="raleway-styled-text">Our villas at Nerul are conveniently located within minutes of several amenities and landmarks.</p>
                                     </div>
                                     <div class="accordion flex-grow-1" id="amenities-accordion">
@@ -338,150 +344,65 @@
                     </div>
                     <!--end container-->
                 </section>
-                <!--end #text-image-block.block-->
-            
-                <section class="block" id="location">
-                    <div class="container">
-                        <div class="block__wrapper">
-                            <div class="block__title">
-                                <h2>Location</h2>
-                                <h3>Where You'll Be Living</h3>
-                            </div>
-                            <!--end block-title-->
-                            <div class="map-wrapper">
-                                <div class="pack d-inline-block" data-scroll-reveal="enter bottom and move 10px">
-                                    <h4>Greenfield residence</h4>
-                                    <address>
-                                        2519 Stanley Avenue
-                                        <br>
-                                        Huntington, NY 11743
-                                    </address>
-                                    <dl>
-                                        <dt>Latitude</dt>
-                                        <dd>51.5144281</dd>
-                                        <dt>Longitude</dt>
-                                        <dd>-0.12815562</dd>
-                                    </dl>
-                                    <div class="image">
-                                        <div class="img-into-bg">
-                                            <img src="assets/img/gallery-01.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="map" class="height-500px"></div>
-                            </div>
-                            <!--end map-wrapper-->
-                        </div>
-                        <!--end block__wrapper-->
-                    </div>
-                    <!--end container-->
-                </section>
+                <!--end #text-image-block.block-->          
                 <!--end #section.block-->             
                 <section class="block" id="contact">
                     <div class="container">
                         <div class="block__wrapper">
                             <div class="block__title">
-                                <h2>Contact</h2>
+                                <h2 class="scroll_2_about">Contact</h2>
+                                <p class="raleway-styled-text">Please submit your details for brochures, price lists, site visits and more.</p>
                             </div>
                             <!--end block-title-->
-                            <div class="row">
-                                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
-                                    <h4>Our Agent</h4>
-                                    <div class="person">
-                                        <div class="person__image">
-                                            <div class="img-into-bg">
-                                                <img src="assets/img/author-01.jpg" alt="">
+                            <div class="contact-form-wrapper">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6 col-lg-6">
+                                        <form id="form-contact" method="post" class="form clearfix" data-formspree="https://formspree.io/f/xnnbpwyk">
+                                            <div class="form-group">
+                                                <label for="form-contact-name">Your Name</label>
+                                                <input type="text" class="form-control" id="form-contact-name" name="name" placeholder="Your Name" required>
                                             </div>
-                                        </div>
-                                        <div class="person__description">
-                                            <h5>Jane Doe</h5>
-                                            <figure>
-                                                <label>Phone:</label>
-                                                <div>(123) 456 789 000</div>
-                                            </figure>
-                                            <figure>
-                                                <label>E-mail:</label>
-                                                <div>
-                                                    <a href="#">john.doe@example.com</a>
+                                            <div class="form-group">
+                                                <label for="form-contact-email">Your Email</label>
+                                                <input type="email" class="form-control" id="form-contact-email" name="email" placeholder="Your Email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="form-contact-phone">Your Phone</label>
+                                                <div class="d-flex">
+                                                    <input id="form-contact-cc" name="country_code" type="text" class="form-control mr-2" value="+91" aria-label="Country Code" style="max-width: 90px;">
+                                                    <input type="tel" class="form-control flex-grow-1" id="form-contact-phone" name="phone" placeholder="Your Phone" required>
                                                 </div>
-                                            </figure>
-                                            <figure>
-                                                <label>Skype:</label>
-                                                <div>John Doe</div>
-                                            </figure>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="form-contact-message">Your Message</label>
+                                                <textarea class="form-control" id="form-contact-message" rows="5" name="message" placeholder="Your Message" required></textarea>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary btn-framed contact-submit" id="form-contact-submit">Submit</button>
+                                            </div>
+                                            <div class="form-contact-status"></div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="contact-side-logo">
+                                            <img src="assets/img/logo.webp" alt="" class="end_logo img-responsive">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
-                                    <h4>Contact Form</h4>
-
-                                    <form id="form-contact" method="post" class="form clearfix">
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="form-contact-name">Your Name</label>
-                                                    <input type="text" class="form-control" id="form-contact-name" name="name" placeholder="Your Name" required>
-                                                </div>
-                                                <!--end form-group -->
-                                            </div>
-                                            <!--end col-md-6 col-sm-6 -->
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="form-contact-email">Your Email</label>
-                                                    <input type="email" class="form-control" id="form-contact-email" name="email" placeholder="Your Email" required>
-                                                </div>
-                                                <!--end form-group -->
-                                            </div>
-                                            <!--end col-md-6 col-sm-6 -->
-                                        </div>
-                                        <!--end row -->
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="form-contact-message">Your Message</label>
-                                                    <textarea class="form-control" id="form-contact-message" rows="8" name="message" placeholder="Your Message" required></textarea>
-                                                </div>
-                                                <!--end form-group -->
-                                            </div>
-                                            <!--end col-md-12 -->
-                                        </div>
-                                        <!--end row -->
-                                        <div class="form-group clearfix">
-                                            <button type="submit" class="btn pull-right btn-primary btn-framed" id="form-contact-submit">Send a Message</button>
-                                        </div>
-                                        <!--end form-group -->
-                                        <div class="form-contact-status"></div>
-                                    </form>
-                                    <!--end form-contact -->
-                                </div>
-                                <!--end col-xl-7-->
                             </div>
-                            <!--end row-->
+                            <!--end contact-form-wrapper -->
                         </div>
                         <!--end block__wrapper-->
                     </div>
                     <!--end container-->
-                    <div class="background-wrapper">
-                        <div class="background background--image background--repeat-repeat opacity-50">
-                            <img src="assets/img/pattern-dot.png" alt="">
-                        </div>
-                    </div>
+                    
                     <!--end background-->
                 </section>
                 <!--end #section.block-->
 
             </div>
             <!--end content-->
-
-            <!--*********************************************************************************************************-->
-            <!--************ FOOTER *************************************************************************************-->
-            <!--*********************************************************************************************************-->
-            <footer id="footer">
-                <div class="container">
-                    <span>(C) Copyright 2017, All Rights Reserved</span>
-                </div>
-            </footer>
-            <!--end footer-->
+            <a href="#contact" class="floating-contact btn btn-contact" aria-label="Contact Us">Enquire Now</a>
         </div>
         <!--end page-->
 
@@ -560,6 +481,26 @@
 	<script type="text/javascript" src="assets/js/jquery.magnific-popup.min.js?v=dev"></script>
 	<script type="text/javascript" src="assets/js/scrollReveal.min.js?v=dev"></script>
 	<script src="assets/js/custom.js?v=dev"></script>
+
+    <!-- Form submission modal -->
+    <div class="modal fade" id="formSubmitModal" tabindex="-1" role="dialog" aria-labelledby="formSubmitModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formSubmitModalLabel">Thank You for sharing your information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Our agent will soon get in touch with you.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-contact" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--
     <script>

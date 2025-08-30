@@ -17,8 +17,10 @@ $(document).ready(function($) {
         var st = $(this).scrollTop();
         if (st > lastScrollTop && st > 50) {
             $nav.addClass("navbar-hidden");
+            $(".floating-contact").addClass("is-visible");
         } else {
             $nav.removeClass("navbar-hidden");
+            if (st <= 50) { $(".floating-contact").removeClass("is-visible"); }
         }
         lastScrollTop = st;
     });
@@ -300,6 +302,234 @@ function getScrollBarWidth () {
     $outer.remove();
     return 100 - widthWithScroll;
 }
+
+// Load MSG91 OTP SDK when needed
+function ensureMsg91Loaded(callback){
+    if (window.initSendOTP) { callback(); return; }
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.onload = callback;
+    s.src = 'https://verify.msg91.com/otp-provider.js';
+    document.body.appendChild(s);
+}
+
+// AJAX submit for hero form via Formspree, gated by MSG91 OTP verification
+$(function(){
+    var $heroForm = $('#form-hero');
+    if (!$heroForm.length) return;
+
+    // Ensure tab order: after Email, focus Message before Submit
+    $('#form-hero-email').on('keydown', function(ev){
+        if ((ev.key === 'Tab' || ev.keyCode === 9) && !ev.shiftKey) {
+            ev.preventDefault();
+            $('#form-hero-message').focus();
+        }
+    });
+
+    // After Message, focus Submit on forward Tab
+    $('#form-hero-message').on('keydown', function(ev){
+        if ((ev.key === 'Tab' || ev.keyCode === 9) && !ev.shiftKey) {
+            ev.preventDefault();
+            $('#form-hero-submit').focus();
+        }
+    });
+
+    function normalizeE164(cc, phone){
+        cc = (cc || '+91').toString().trim();
+        phone = (phone || '').toString().trim();
+        if (cc.charAt(0) !== '+') cc = '+' + cc;
+        phone = phone.replace(/\D+/g, '').replace(/^0+/, '');
+        return cc + phone;
+    }
+
+    function submitHeroFormAjax(){
+        var endpoint = $heroForm.attr('data-formspree');
+        if (!endpoint) { $heroForm.off('submit').trigger('submit'); return; }
+        var payload = {
+            name: $('#form-hero-name').val(),
+            phone: normalizeE164($('#form-hero-cc').val(), $('#form-hero-phone').val()),
+            email: $('#form-hero-email').val(),
+            message: $('#form-hero-message').val()
+        };
+        $.ajax({
+            url: endpoint,
+            method: 'POST',
+            data: payload,
+            dataType: 'json'
+        }).done(function(){
+            try {
+                $('#formSubmitModal .modal-title').text('Thank You for sharing your information');
+                $('#formSubmitModal .modal-body').text('Our agent will soon get in touch with you.');
+                $('#formSubmitModal').modal('show');
+            } catch(e){}
+            $heroForm[0].reset();
+        }).fail(function(){
+            try {
+                $('#formSubmitModal .modal-title').text('Oops');
+                $('#formSubmitModal .modal-body').text('There was a problem sending your message. Please try again.');
+                $('#formSubmitModal').modal('show');
+            } catch(e){}
+        }).always(function(){
+            $('#form-hero-submit').prop('disabled', false);
+        });
+    }
+
+    function startOtpVerification(e164Phone){
+        var configuration = {
+            widgetId: '356844694444383834333338',
+            tokenAuth: '466799TwbvCuEjh68b2c585P1',
+            identifier: e164Phone,
+            exposeMethods: false,
+            success: function(data){
+                // data should contain the verified token
+                var token = (data && (data.token || data['access-token'] || data.accessToken)) || '';
+                if (!token) { submitHeroFormAjax(); return; }
+                // Call our server to verify token against MSG91
+                $.ajax({
+                    url: 'assets/api/verify_otp.php',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ access_token: token })
+                }).done(function(resp){
+                    if (resp && resp.ok) { submitHeroFormAjax(); }
+                    else {
+                        try {
+                            $('#formSubmitModal .modal-title').text('Verification failed');
+                            $('#formSubmitModal .modal-body').text('We could not verify your number. Please try again.');
+                            $('#formSubmitModal').modal('show');
+                        } catch(e){}
+                        $('#form-hero-submit').prop('disabled', false);
+                    }
+                }).fail(function(){
+                    try {
+                        $('#formSubmitModal .modal-title').text('Verification error');
+                        $('#formSubmitModal .modal-body').text('A server error occurred. Please try again.');
+                        $('#formSubmitModal').modal('show');
+                    } catch(e){}
+                    $('#form-hero-submit').prop('disabled', false);
+                });
+            },
+            failure: function(error){
+                try {
+                    $('#formSubmitModal .modal-title').text('Verification failed');
+                    $('#formSubmitModal .modal-body').text('We could not verify your number. Please try again.');
+                    $('#formSubmitModal').modal('show');
+                } catch(e){}
+                $('#form-hero-submit').prop('disabled', false);
+            }
+        };
+        ensureMsg91Loaded(function(){
+            try { window.initSendOTP(configuration); }
+            catch(e){
+                try {
+                    $('#formSubmitModal .modal-title').text('Verification unavailable');
+                    $('#formSubmitModal .modal-body').text('OTP service is unavailable. Please try again later.');
+                    $('#formSubmitModal').modal('show');
+                } catch(_){}
+                $('#form-hero-submit').prop('disabled', false);
+            }
+        });
+    }
+
+    $heroForm.on('submit', function(e){
+        e.preventDefault();
+        var e164 = normalizeE164($('#form-hero-cc').val(), $('#form-hero-phone').val());
+        $('#form-hero-submit').prop('disabled', true);
+        startOtpVerification(e164);
+    });
+});
+
+// Contact form (bottom) – same OTP + Formspree flow
+$(function(){
+    var $contactForm = $('#form-contact');
+    if (!$contactForm.length) return;
+
+    function normalizeE164(cc, phone){
+        cc = (cc || '+91').toString().trim();
+        phone = (phone || '').toString().trim();
+        if (cc.charAt(0) !== '+') cc = '+' + cc;
+        phone = phone.replace(/\D+/g, '').replace(/^0+/, '');
+        return cc + phone;
+    }
+
+    function submitContactAjax(){
+        var endpoint = $contactForm.attr('data-formspree');
+        if (!endpoint) { $contactForm.off('submit').trigger('submit'); return; }
+        var payload = {
+            name: $('#form-contact-name').val(),
+            phone: normalizeE164($('#form-contact-cc').val(), $('#form-contact-phone').val()),
+            email: $('#form-contact-email').val(),
+            message: $('#form-contact-message').val()
+        };
+        $.ajax({ url: endpoint, method: 'POST', data: payload, dataType: 'json' })
+        .done(function(){
+            try {
+                $('#formSubmitModal .modal-title').text('Thank You for sharing your information');
+                $('#formSubmitModal .modal-body').text('Our agent will soon get in touch with you.');
+                $('#formSubmitModal').modal('show');
+            } catch(e){}
+            $contactForm[0].reset();
+        }).fail(function(){
+            try {
+                $('#formSubmitModal .modal-title').text('Oops');
+                $('#formSubmitModal .modal-body').text('There was a problem sending your message. Please try again.');
+                $('#formSubmitModal').modal('show');
+            } catch(e){}
+        }).always(function(){ $('#form-contact-submit').prop('disabled', false); });
+    }
+
+    function startOtpVerificationContact(e164Phone){
+        var configuration = {
+            widgetId: '356844694444383834333338',
+            tokenAuth: '466799TwbvCuEjh68b2c585P1',
+            identifier: e164Phone,
+            exposeMethods: false,
+            success: function(data){
+                var token = (data && (data.token || data['access-token'] || data.accessToken)) || '';
+                if (!token) { submitContactAjax(); return; }
+                $.ajax({
+                    url: 'assets/api/verify_otp.php',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ access_token: token })
+                }).done(function(resp){
+                    if (resp && resp.ok) submitContactAjax();
+                    else {
+                        try {
+                            $('#formSubmitModal .modal-title').text('Verification failed');
+                            $('#formSubmitModal .modal-body').text('We could not verify your number. Please try again.');
+                            $('#formSubmitModal').modal('show');
+                        } catch(e){}
+                        $('#form-contact-submit').prop('disabled', false);
+                    }
+                }).fail(function(){
+                    try {
+                        $('#formSubmitModal .modal-title').text('Verification error');
+                        $('#formSubmitModal .modal-body').text('A server error occurred. Please try again.');
+                        $('#formSubmitModal').modal('show');
+                    } catch(e){}
+                    $('#form-contact-submit').prop('disabled', false);
+                });
+            },
+            failure: function(){
+                try {
+                    $('#formSubmitModal .modal-title').text('Verification failed');
+                    $('#formSubmitModal .modal-body').text('We could not verify your number. Please try again.');
+                    $('#formSubmitModal').modal('show');
+                } catch(e){}
+                $('#form-contact-submit').prop('disabled', false);
+            }
+        };
+        ensureMsg91Loaded(function(){ try { window.initSendOTP(configuration); } catch(e){ $('#form-contact-submit').prop('disabled', false); }});
+    }
+
+    $contactForm.on('submit', function(e){
+        e.preventDefault();
+        var e164 = normalizeE164($('#form-contact-cc').val(), $('#form-contact-phone').val());
+        $('#form-contact-submit').prop('disabled', true);
+        startOtpVerificationContact(e164);
+    });
+});
 
 // Defer-load modal gallery slides on first open (responsive, folder-based with explicit filenames)
 $('#modal-feature').off('show.bs.modal').on('show.bs.modal', function (ev) {
