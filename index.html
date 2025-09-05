@@ -16,10 +16,32 @@
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css?v=dev" type="text/css">
     <link rel="stylesheet" href="assets/css/magnific-popup.css?v=dev">
     <link rel="stylesheet" href="assets/css/style.css?v=1">
+    <!-- Google tag (gtag.js) for Google Ads & GA4 base tags -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17436690793"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BECVJNSL56"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    // Google Ads config
+    gtag('config', 'AW-17436690793');
+    // GA4 config
+    gtag('config', 'G-BECVJNSL56');
+    </script>
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src='https://connect.facebook.net/en_US/fbevents.js';s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script');
+    fbq('init', '1990691745091385');
+    fbq('track', 'PageView');
+    </script>
 	<title>Housing - Real Estate Landing Page</title>
 
 </head>
 <body data-spy="scroll" data-target=".navbar">
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1990691745091385&ev=PageView&noscript=1" /></noscript>
     <div class="page-wrapper" id="page-top">
         <!--*********************************************************************************************************-->
         <!--************ HERO ***************************************************************************************-->
@@ -334,11 +356,7 @@
                                 </div>
                             </div>
 
-                            <div class="background-wrapper">
-                                <div class="background--particles">
-                                </div>
-                            </div>
-                            <!--end background-->
+                            <!-- background removed: particles disabled for performance -->
                         </div>
                         <!--end block__wrapper-->
                     </div>
@@ -349,43 +367,48 @@
                 <section class="block" id="contact">
                     <div class="container">
                         <div class="block__wrapper">
-                            <div class="block__title">
-                                <h2 class="scroll_2_about">Contact</h2>
-                                <p class="raleway-styled-text">Please submit your details for brochures, price lists, site visits and more.</p>
-                            </div>
-                            <!--end block-title-->
+                            
                             <div class="contact-form-wrapper">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6 col-lg-6">
-                                        <form id="form-contact" method="post" class="form clearfix" data-formspree="https://formspree.io/f/xnnbpwyk">
-                                            <div class="form-group">
-                                                <label for="form-contact-name">Your Name</label>
-                                                <input type="text" class="form-control" id="form-contact-name" name="name" placeholder="Your Name" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="form-contact-email">Your Email</label>
-                                                <input type="email" class="form-control" id="form-contact-email" name="email" placeholder="Your Email" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="form-contact-phone">Your Phone</label>
-                                                <div class="d-flex">
-                                                    <input id="form-contact-cc" name="country_code" type="text" class="form-control mr-2" value="+91" aria-label="Country Code" style="max-width: 90px;">
-                                                    <input type="tel" class="form-control flex-grow-1" id="form-contact-phone" name="phone" placeholder="Your Phone" required>
+                                <div class="row align-items-stretch">
+                                    <div class="col-md-5">
+                                        <div class="contact__caption has-dark-background h-100">
+                                            <h1 class="bottom_form_header">Enquire About Coco Verde Villas</h1>
+                                            <h3 style="color: white; line-height: 1.5; margin-bottom: 1em;" class="raleway-styled-text">Contact our team—share your details to get brochures, pricing, and book a site visit.</h3>
+                                            
+                                            <form id="form-contact" method="post" class="form clearfix" data-formspree="https://formspree.io/f/xnnbpwyk">
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="form-contact-name">Name</label>
+                                                        <input type="text" class="form-control" id="form-contact-name" name="name" placeholder="Your Name" required>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="form-contact-phone">Phone</label>
+                                                        <div class="d-flex">
+                                                            <input style="padding: 1.5rem .5rem" id="form-contact-cc" name="country_code" type="text" class="form-control mr-2" value="+91" aria-label="Country Code" style="max-width: 90px;">
+                                                            <input type="tel" class="form-control flex-grow-1" id="form-contact-phone" name="phone" placeholder="Your Phone" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="form-contact-message">Your Message</label>
-                                                <textarea class="form-control" id="form-contact-message" rows="5" name="message" placeholder="Your Message" required></textarea>
-                                            </div>
-                                            <div class="text-center">
-                                                <button type="submit" class="btn btn-primary btn-framed contact-submit" id="form-contact-submit">Submit</button>
-                                            </div>
-                                            <div class="form-contact-status"></div>
-                                        </form>
+                                                <div class="form-row align-items-stretch">
+                                                    <div class="form-group col-md-6 d-flex flex-column">
+                                                        <label for="form-contact-email">Email</label>
+                                                        <input type="email" class="form-control" id="form-contact-email" name="email" placeholder="Your Email" required>
+                                                    </div>
+                                                    <div class="form-group col-md-6 d-flex flex-column">
+                                                        <label for="form-contact-message">Message</label>
+                                                        <textarea class="form-control flex-grow-1" id="form-contact-message" name="message" placeholder="Your Message" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-secondary mt-2 w-100 contact-submit" id="form-contact-submit">Submit</button>
+                                                </div>
+                                                <div class="form-contact-status"></div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 col-lg-6">
-                                        <div class="contact-side-logo">
-                                            <img src="assets/img/logo.webp" alt="" class="end_logo img-responsive">
+                                    <div class="col-md-7 d-flex">
+                                        <div class="contact-image-wrapper width-100 shadow rounded-corners h-100">
+                                            <img src="assets/img/beach.webp" class="width-100 h-100" style="object-fit: cover; width: 100%;" alt="Coco Beach">
                                         </div>
                                     </div>
                                 </div>
@@ -476,7 +499,7 @@
 	<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js?v=dev"></script>
     <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script> -->
 	<script type="text/javascript" src="assets/js/isInViewport.jquery.js?v=dev"></script>
-	<script type="text/javascript" src="assets/js/jquery.particleground.min.js?v=dev"></script>
+	<!-- particles plugin removed for performance -->
 	<script type="text/javascript" src="assets/js/owl.carousel.min.js?v=dev"></script>
 	<script type="text/javascript" src="assets/js/jquery.magnific-popup.min.js?v=dev"></script>
 	<script type="text/javascript" src="assets/js/scrollReveal.min.js?v=dev"></script>
@@ -501,6 +524,28 @@
             </div>
         </div>
     </div>
+
+    <!-- Google Ads conversion integration -->
+    <script>
+    function gtag_report_conversion(url) {
+      try {
+        var callback = function () {
+          if (typeof(url) !== 'undefined') {
+            window.location = url;
+          }
+        };
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'conversion', {
+              'send_to': 'AW-17436690793/keTPCLjzxYAbEOmSu_pA',
+              'value': 1.0,
+              'currency': 'INR',
+              'event_callback': callback
+          });
+        }
+      } catch(e) {}
+      return false;
+    }
+    </script>
 
     <!--
     <script>

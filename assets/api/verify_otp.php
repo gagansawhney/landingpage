@@ -7,7 +7,11 @@ header('Content-Type: application/json');
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Pragma: no-cache');
 
-$authKey = getenv('MSG91_AUTHKEY');
+// Load local secrets if present
+$__secrets = @include __DIR__ . '/local_secrets.php';
+if (!is_array($__secrets)) { $__secrets = []; }
+
+$authKey = isset($__secrets['MSG91_AUTHKEY']) && $__secrets['MSG91_AUTHKEY'] !== '' ? $__secrets['MSG91_AUTHKEY'] : getenv('MSG91_AUTHKEY');
 if (!$authKey) {
     http_response_code(500);
     echo json_encode(['ok' => false, 'error' => 'Server not configured. Set MSG91_AUTHKEY environment variable.']);
